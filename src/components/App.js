@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Board from './Board';
 import Header from './Header';
 import Info from './Info';
+import X from '../images/1.png';
+import O from '../images/0.png';
 
 
 class Game extends Component {
@@ -13,19 +15,19 @@ class Game extends Component {
 
     board: [
       [
-        { id: [0, 1], player: 'X' },
-        { id: [0, 2], player: 'O' },
-        { id: [0, 3], player: 'X' }
+        { id: [0, 1], player: X },
+        { id: [0, 2], player: O },
+        { id: [0, 3], player: X }
       ],
       [
-        { id: [1, 4], player: 'O' },
-        { id: [1, 5], player: 'X' },
-        { id: [1, 6], player: 'O' }
+        { id: [1, 4], player: O },
+        { id: [1, 5], player: X },
+        { id: [1, 6], player: O }
       ],
       [
-        { id: [2, 7], player: 'X' },
-        { id: [2, 8], player: 'O' },
-        { id: [2, 9], player: 'X' }
+        { id: [2, 7], player: X },
+        { id: [2, 8], player: O },
+        { id: [2, 9], player: X }
       ]
     ]
   };
