@@ -7,48 +7,40 @@ import Info from './Info';
 class Game extends Component {
 
   state = {
-    players: [
-      {
-        name: 'Andrei'
-      },
-      {
-        name: 'Olga'
-      }
-    ],
+
+    player1: 'None',
+    player2: 'None',
+
     board: [
       [
-        { id: 1, player: 'none' },
-        { id: 2, player: 'none' },
-        { id: 3, player: 'none' }
+        { id: [0, 1], player: 'X' },
+        { id: [0, 2], player: 'O' },
+        { id: [0, 3], player: 'X' }
       ],
       [
-        { id: 4, player: 'none' },
-        { id: 5, player: 'none' },
-        { id: 6, player: 'none' }
+        { id: [1, 4], player: 'O' },
+        { id: [1, 5], player: 'X' },
+        { id: [1, 6], player: 'O' }
       ],
       [
-        { id: 7, player: 'none' },
-        { id: 8, player: 'none' },
-        { id: 9, player: 'none' }
+        { id: [2, 7], player: 'X' },
+        { id: [2, 8], player: 'O' },
+        { id: [2, 9], player: 'X' }
       ]
     ]
   };
 
   assignPlayerToCell = (id) => {
     console.log("Hello from assignPlayerToCell", id);
-    // this.setState(prevState => {
-    //     return {
-    //         players: prevState.players.filter(p => p.id !== id)
-    //     };
-
-    // });
+    this.setState({ player1: 'Andrei' });
+    console.log(this.state);
   }
 
-  
+
 
 
   render() {
-    
+
     // this.assignPlayerToCell(3); // Test my method onClick to Cell
 
     return (

@@ -1,13 +1,17 @@
-import React, {Component}  from 'react';
+import React, { Component } from 'react';
+import X from '../images/1.png';
+import O from '../images/0.png';
 
+class Cell extends Component {
 
-class  Cell extends Component {
-  
-  render(){ 
-    return(
-    <button className="square btn btn-outline-dark" onClick={ () => this.props.assignPlayerToCell(this.props.id) }></button>
-    
-  );
+  render() {
+    return (
+      <div>
+        <button className="square btn btn-outline-dark" onClick={() => this.props.assignPlayerToCell(this.props.id)}>
+         
+        </button>
+      </div>
+    );
   }
 }
 export default Cell;

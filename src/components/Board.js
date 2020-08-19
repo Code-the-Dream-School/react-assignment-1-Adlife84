@@ -28,8 +28,9 @@ class Board extends Component {
         <div className="board">
 
           <div className="row">
-            {this.props.state.board[0].map((cell) =>
+            {this.props.state.board[0].map((cell, index) =>
               <Cell
+                key={index}
                 id={cell.id}
                 player={cell.player}
                 assignPlayerToCell={this.props.assignPlayerToCell}
@@ -37,8 +38,9 @@ class Board extends Component {
             )}
           </div>
           <div className="row">
-            {this.props.state.board[1].map((cell) =>
+            {this.props.state.board[1].map((cell, index) =>
               <Cell
+                key={index}
                 id={cell.id}
                 player={cell.player}
                 assignPlayerToCell={this.props.assignPlayerToCell}
@@ -46,8 +48,9 @@ class Board extends Component {
             )}
           </div>
           <div className="row">
-            {this.props.state.board[2].map((cell) =>
+            {this.props.state.board[2].map((cell, index) =>
               <Cell
+                key={index}
                 id={cell.id}
                 player={cell.player}
                 assignPlayerToCell={this.props.assignPlayerToCell}
