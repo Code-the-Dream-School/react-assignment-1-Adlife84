@@ -24,7 +24,11 @@ class Info extends Component {
                 Name 
                 <img className="icon" src={icon2} alt="icon"></img>
               </label>
-              <input type="text" class="form-control"></input>
+              <input 
+                type="text" 
+                class="form-control">
+                
+                </input>
             </div>
           </div>
         </div>

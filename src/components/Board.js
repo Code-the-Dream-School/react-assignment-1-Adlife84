@@ -17,14 +17,13 @@ class Board extends Component {
           <h1 className="niceFont text-uppercase">tic tac toe</h1>
         </div>
 
-        {/* Reset and Start button */}
+        {/* Names of players */}
         <div className="together">
-          <p><img className="icon" src={icon1} alt="icon"></img> Name</p>
-          <p><img className="icon" src={icon2} alt="icon"></img> Name</p>
+          <p><img className="icon" src={icon1} alt="icon"></img> {this.props.state.player1}</p>
+          <p><img className="icon" src={icon2} alt="icon"></img> {this.props.state.player2}</p>
         </div>
 
         {/* Board cells 9x9 */}
-
         <div className="board">
 
           <div className="row">
@@ -83,10 +82,7 @@ class Board extends Component {
           <button type="submit" className="btn btn-dark niceFont">New Game</button>
           <button type="submit" className="btn btn-dark niceFont">Reset</button>
         </div>
-
-
-
-      </div >
+      </div>
     );
   }
 }

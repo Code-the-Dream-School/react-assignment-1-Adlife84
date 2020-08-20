@@ -10,32 +10,36 @@ class Game extends Component {
 
   state = {
 
-    player1: 'None',
-    player2: 'None',
+    player1: 'Name ',
+    player2: 'Name ',
 
     board: [
       [
+        { id: [0, 0], player: O },
         { id: [0, 1], player: X },
-        { id: [0, 2], player: O },
-        { id: [0, 3], player: X }
+        { id: [0, 2], player: X }
       ],
       [
-        { id: [1, 4], player: O },
-        { id: [1, 5], player: X },
-        { id: [1, 6], player: O }
+        { id: [1, 0], player: O },
+        { id: [1, 1], player: O },
+        { id: [1, 2], player: O }
       ],
       [
-        { id: [2, 7], player: X },
-        { id: [2, 8], player: O },
-        { id: [2, 9], player: X }
+        { id: [2, 0], player: O },
+        { id: [2, 1], player: O },
+        { id: [2, 2], player: O }
       ]
     ]
   };
 
   assignPlayerToCell = (id) => {
     console.log("Hello from assignPlayerToCell", id);
-    this.setState({ player1: 'Andrei' });
-    console.log(this.state);
+    this.setState( prevState => { 
+      console.log(prevState.board[0][0].player);
+      prevState.board[id[0]][id[1]].player = X;
+      console.log(prevState.board[0][0].player);
+      return prevState;
+    });
   }
 
 
@@ -44,9 +48,11 @@ class Game extends Component {
   render() {
 
     // this.assignPlayerToCell(3); // Test my method onClick to Cell
+  
 
     return (
       <div>
+        
         {/* <Header /> */}
         {/* <Info /> */}
         <Board
