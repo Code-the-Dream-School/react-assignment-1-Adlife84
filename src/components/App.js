@@ -13,14 +13,16 @@ class Game extends Component {
     player1: 'Name ',
     player2: 'Name ',
 
+    currentPlayer: "player1",
+
     board: [
       [
-        { id: [0, 0], player: O },
+        { id: [0, 0], player: X },
         { id: [0, 1], player: X },
         { id: [0, 2], player: X }
       ],
       [
-        { id: [1, 0], player: O },
+        { id: [1, 0], player: X },
         { id: [1, 1], player: O },
         { id: [1, 2], player: O }
       ],
@@ -32,14 +34,30 @@ class Game extends Component {
     ]
   };
 
+  //Change a player turn
+  changeCurrentPlayer = () => {
+    this.state.currentPlayer === 'player1'? 
+    this.setState(prevState => {prevState.currentPlayer = 'player2'}): 
+    this.setState(prevState => {prevState.currentPlayer = 'player1'});
+    console.log("I have change players", this.state.currentPlayer);  //Test that state changed
+  }
+
+  //Assign image Player to cell
   assignPlayerToCell = (id) => {
-    console.log("Hello from assignPlayerToCell", id);
-    this.setState( prevState => { 
-      console.log(prevState.board[0][0].player);
-      prevState.board[id[0]][id[1]].player = X;
-      console.log(prevState.board[0][0].player);
-      return prevState;
-    });
+
+    if(this.state.currentPlayer === "player1"){
+      this.setState( prevState => { 
+        prevState.board[id[0]][id[1]].player = O; 
+        return prevState;
+      });
+    } else {
+      this.setState( prevState => { 
+        prevState.board[id[0]][id[1]].player = X; 
+        return prevState;
+      });
+    }
+  
+    this.changeCurrentPlayer();
   }
 
 

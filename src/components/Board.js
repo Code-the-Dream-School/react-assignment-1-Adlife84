@@ -58,25 +58,6 @@ class Board extends Component {
           </div>
         </div>
 
-
-        {/* <div className="board">
-          <div className="row">
-            <Cell />
-            <Cell />
-            <Cell />
-          </div>
-          <div className="row">
-            <Cell />
-            <Cell />
-            <Cell />
-          </div>
-          <div className="row">
-            <Cell />
-            <Cell />
-            <Cell />
-          </div>
-        </div> */}
-
         {/* Reset and Start button */}
         <div className="together">
           <button type="submit" className="btn btn-dark niceFont">New Game</button>
