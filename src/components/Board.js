@@ -19,8 +19,8 @@ class Board extends Component {
 
         {/* Names of players */}
         <div className="together">
-          <p><img className="icon" src={icon1} alt="icon"></img> {this.props.state.player1}</p>
-          <p><img className="icon" src={icon2} alt="icon"></img> {this.props.state.player2}</p>
+          <p><img className="icon" src={icon1} alt="icon"></img> {this.props.state.player1.name}</p>
+          <p><img className="icon" src={icon2} alt="icon"></img> {this.props.state.player2.name}</p>
         </div>
 
         {/* Board cells 9x9 */}

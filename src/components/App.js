@@ -11,10 +11,18 @@ class Game extends Component {
 
   state = {
 
-    player1: 'Name ',
-    player2: 'Name ',
+    player1: {
+      name: 'Andrei ',
+      steps: []
+    },
 
+    player2: {
+      name: 'Olga ',
+      steps: []
+    },
+    
     currentPlayer: "player1",
+    isWin: "None",
 
     board: [
       [
@@ -32,6 +40,15 @@ class Game extends Component {
         { id: [2, 1], player: N },
         { id: [2, 2], player: N }
       ]
+    ],
+
+
+
+    winCombinations: [
+      [0, 1, 2],
+      [0, 0, 0],
+      [1, 1, 1], 
+      [2, 2, 2]   
     ]
   };
 
@@ -43,6 +60,12 @@ class Game extends Component {
     console.log("I have change players", this.state.currentPlayer);  //Test that state changed
   }
 
+  //Check is it WIN
+  isWin = () => {
+    console.log('Hello from isWin');
+  }
+
+
 
 
   //Assign image Player to cell
@@ -52,11 +75,15 @@ class Game extends Component {
       if (this.state.currentPlayer === "player1") {
         this.setState(prevState => {
           prevState.board[id[0]][id[1]].player = O;
+          prevState.player1.steps.push(id[1]);
+          console.log('Player 1', this.state.player1.steps);
           return prevState;
         });
       } else {
         this.setState(prevState => {
           prevState.board[id[0]][id[1]].player = X;
+          prevState.player2.steps.push(id[1]);
+          console.log('Player 2', this.state.player2.steps);
           return prevState;
         });
       }
@@ -65,7 +92,8 @@ class Game extends Component {
       alert("Cell is not free, click on other cell");
     }
 
-
+    
+    this.isWin(); //Check maybe currentPlayer is Win
     this.changeCurrentPlayer(); //Change player each next turn
   }
 
