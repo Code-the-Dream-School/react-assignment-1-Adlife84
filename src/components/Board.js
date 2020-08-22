@@ -60,8 +60,8 @@ class Board extends Component {
 
         {/* Reset and Start button */}
         <div className="together">
-          <button type="submit" className="btn btn-dark niceFont">New Game</button>
-          <button type="submit" className="btn btn-dark niceFont">Reset</button>
+          <button type="submit" className="btn btn-dark niceFont" onClick={() => this.props.newGame()}>New Game</button>
+          <button type="submit" className="btn btn-dark niceFont" onClick={() => this.props.resetGame()}>Reset</button>
         </div>
       </div>
     );

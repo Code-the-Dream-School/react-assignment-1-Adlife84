@@ -42,8 +42,6 @@ class Game extends Component {
       ]
     ],
 
-
-
     winCombinations: [
       '0,1,2',
       '0,0,0',
@@ -52,6 +50,26 @@ class Game extends Component {
       '2,1,0'
     ]
   };
+
+
+  //Reset game handler
+  resetGameHandle = () => {
+    console.log('Hi from resetGameHandle');
+
+    //Restart the board
+    for (let i = 0; i < this.state.board.length; i++) {
+      this.setState(prevState => {
+        prevState.board[i].map(cell => cell.player = N);
+
+        return prevState;
+      });
+    }
+  }
+
+  //New game handler
+  newGameHandle = () => {
+    console.log("Hi from newGameHandle");
+  }
 
   //Change a player turn
   changeCurrentPlayer = () => {
@@ -109,7 +127,7 @@ class Game extends Component {
           prevState.player1.steps.push(id[1]);
           console.log('Player 1', this.state.player1.steps);
           this.isWin(this.state.player1); //Check maybe Player1 is Win
-         
+
           return prevState;
         });
       } else {
@@ -118,7 +136,7 @@ class Game extends Component {
           prevState.player2.steps.push(id[1]);
           console.log('Player 2', this.state.player2.steps);
           this.isWin(this.state.player2); //Check maybe Player2 is Win
-     
+
           return prevState;
         });
       }
@@ -128,8 +146,6 @@ class Game extends Component {
 
     this.changeCurrentPlayer(); //Change player each next turn
     console.log("I work first");
-
-
   }
 
 
@@ -148,6 +164,8 @@ class Game extends Component {
         <Board
           state={this.state}
           assignPlayerToCell={this.assignPlayerToCell}
+          resetGame={this.resetGameHandle}
+          newGame={this.newGameHandle}
         />
       </div>
     );
