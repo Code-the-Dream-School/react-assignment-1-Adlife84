@@ -56,11 +56,20 @@ class Game extends Component {
   resetGameHandle = () => {
     console.log('Hi from resetGameHandle');
 
+    //Restart steps player1
+    this.setState(prevState => {
+      prevState.player1.steps = [];
+    });
+
+    //Restart steps player2
+    this.setState(prevState => {
+      prevState.player2.steps = [];
+    });
+
     //Restart the board
     for (let i = 0; i < this.state.board.length; i++) {
       this.setState(prevState => {
         prevState.board[i].map(cell => cell.player = N);
-
         return prevState;
       });
     }
@@ -69,6 +78,18 @@ class Game extends Component {
   //New game handler
   newGameHandle = () => {
     console.log("Hi from newGameHandle");
+    //Reset names of player1
+    this.setState(prevState => {
+      prevState.player1.name = "";
+    });
+
+    //Reset names of player2
+    this.setState(prevState => {
+      prevState.player2.name = "";
+    });
+
+
+    this.resetGameHandle();
   }
 
   //Change a player turn
