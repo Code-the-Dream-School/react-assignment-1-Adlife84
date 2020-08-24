@@ -102,16 +102,20 @@ class Game extends Component {
 
   //Add Names of players
   addNamesOfPlayers = (players) => {
-    console.log("Hi from Start game");
+    console.log("Hi from addNamesOfPlayers");
 
-    this.setState(prevState => { prevState.player1.name = players.player1 });
-    this.setState(prevState => { prevState.player2.name = players.player2 });
+    if (players.player1 === "" || players.player2 === "" || players.player1 === players.player2) {
+      alert("Please write names of player");
+    } else {
+      this.setState(prevState => { prevState.player1.name = players.player1 });
+      this.setState(prevState => { prevState.player2.name = players.player2 });
 
-    this.setState(prevState => {
-      prevState.gameStatus = "Game have started"
-      return prevState;
-    });
-
+      //Change staus game
+      this.setState(prevState => {
+        prevState.gameStatus = "Game have started"
+        return prevState;
+      });
+    }
   }
 
 
@@ -125,31 +129,67 @@ class Game extends Component {
   }
 
   //Check is it WIN (compare two arrays beatwean each other if it's the same you win)
+
   isWin = (player) => {
-    console.log('Hello from isWin', this.state.player1.steps);
-    let playerArray = player.steps;
-    let playerArrayString = playerArray.toString()
-    let winArray = this.state.winCombinations;
+    let a = this.state.board[0][0].player;
+    let b = this.state.board[0][1].player;
+    let c = this.state.board[0][2].player;
 
-    console.log(playerArray);
-    console.log(playerArrayString);
+    // Check gorizontal 
+    for (let i = 0; i < 3; i++) {
+      a = this.state.board[i][0].player;
+      b = this.state.board[i][1].player;
+      c = this.state.board[i][2].player;
+      this.isEquel(a, b, c);
+    }
 
-    console.log(winArray.indexOf(playerArrayString));
+    //Vertical check
+    for (let i = 0; i < 3; i++) {
+      a = this.state.board[0][i].player;
+      b = this.state.board[1][i].player;
+      c = this.state.board[2][i].player;
+      this.isEquel(a, b, c);
+    }
 
-    if (winArray.indexOf(playerArrayString) === -1) {
-      console.log("Game over!");
-    } else {
-      console.log("You Win!", winArray.indexOf(playerArrayString));
-      this.state.isWin = player.name; //Put name of winer in the state
-      alert(`Congratulation you ${this.state.isWin}! You Won!!!`);
+    //Diagonals check from top to buttom
+    a = this.state.board[0][2].player;
+    b = this.state.board[1][1].player;
+    c = this.state.board[2][0].player;
+    this.isEquel(a, b, c);
+
+    //Diagonals check from buttom to top
+    a = this.state.board[0][0].player;
+    b = this.state.board[1][1].player;
+    c = this.state.board[2][2].player;
+    this.isEquel(a, b, c);
+  }
+
+  isEquel = (a, b, c) => {
+    //if all three elements are equel that means you win! 
+    if (
+      a !== N &&
+      a === b &&
+      b === c
+    ) {
+      this.resetGameHandle();
+      return (a === O ? alert(`Congratulation you ${this.state.player1.name}! You Won!!!`) : alert(`Congratulation you ${this.state.player2.name}! You Won!!!`)) //Return a winner in Alert;
     }
   }
 
+  //Sound effect onClick doesn't work yet
+  makeSound = () => {
+    console.log("Try tp play sound");
+    let audioUrl = 'police.mp3';
 
+    // SIMPLE EXEMPLE
+    new Audio(audioUrl).play(); // that will do the trick !!
+  }
 
 
   //Assign image Player to cell
   assignPlayerToCell = (id) => {
+
+    this.makeSound();
 
     if (this.state.board[id[0]][id[1]].player === N) {
       if (this.state.currentPlayer === "player1") {
@@ -157,8 +197,6 @@ class Game extends Component {
           prevState.board[id[0]][id[1]].player = O;
           prevState.player1.steps.push(id[1]);
           console.log('Player 1', this.state.player1.steps);
-          this.isWin(this.state.player1); //Check maybe Player1 is Win
-
           return prevState;
         });
       } else {
@@ -166,8 +204,6 @@ class Game extends Component {
           prevState.board[id[0]][id[1]].player = X;
           prevState.player2.steps.push(id[1]);
           console.log('Player 2', this.state.player2.steps);
-          this.isWin(this.state.player2); //Check maybe Player2 is Win
-
           return prevState;
         });
       }
@@ -176,9 +212,14 @@ class Game extends Component {
     }
 
     this.changeCurrentPlayer(); //Change player each next turn
+
   }
 
   render() {
+
+    this.isWin(this.state.currentPlayer); //test isWin logic until start game remove it after 
+
+
     return (
       <div>
         {
@@ -187,19 +228,20 @@ class Game extends Component {
               newGame={this.newGameHandle}
             /> :
             this.state.gameStatus === "start" ?
-            <Info
-              addNamesOfPlayers={this.addNamesOfPlayers}
-              player1={this.state.player1}
-              player2={this.state.player2}
-            />:
-            <Board
-              state={this.state}
-              assignPlayerToCell={this.assignPlayerToCell}
-              resetGame={this.resetGameHandle}
-              newGame={this.newGameHandle}
+              <Info
+                addNamesOfPlayers={this.addNamesOfPlayers}
+                player1={this.state.player1}
+                player2={this.state.player2}
+              /> :
+              <Board
+                state={this.state}
+                assignPlayerToCell={this.assignPlayerToCell}
+                resetGame={this.resetGameHandle}
+                newGame={this.newGameHandle}
               />
           )
         }
+
       </div>
     );
   }

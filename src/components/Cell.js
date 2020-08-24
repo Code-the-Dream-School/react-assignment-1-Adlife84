@@ -7,7 +7,7 @@ class Cell extends Component {
       <div>
         <button className="square btn btn-outline-dark" onClick={() => 
         this.props.assignPlayerToCell(this.props.id)}>
-         <img className="squareIcon" src={this.props.player}></img>
+         <img className="squareIcon" src={this.props.player} alt="CrossOrNull"></img>
         </button>
       </div>
     );

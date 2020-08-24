@@ -18,12 +18,6 @@ class Info extends Component {
     this.setState({ player2: e.target.value });
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.addPlayer(this.state);
-    this.setState({ player1: '' }); //Reset input after added it to global state
-    this.setState({ player2: '' });
-  }
 
   render() {
     return (
@@ -37,7 +31,7 @@ class Info extends Component {
               </label>
               <input
                 type="text" class="form-control"
-                value={this.state.value}
+                value={this.state.player1}
                 onChange={this.ValueChangePlayer1}>
               </input>
             </div>
@@ -50,7 +44,7 @@ class Info extends Component {
               </label>
               <input
                 type="text" class="form-control"
-                value={this.state.value}
+                value={this.state.player2}
                 onChange={this.ValueChangePlayer2}>
               </input>
             </div>
