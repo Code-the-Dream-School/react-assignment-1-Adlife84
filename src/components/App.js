@@ -12,12 +12,12 @@ class Game extends Component {
   state = {
 
     player1: {
-      name: 'Andrei ',
+      name: "",
       steps: []
     },
 
     player2: {
-      name: 'Olga ',
+      name: "",
       steps: []
     },
 
@@ -48,7 +48,10 @@ class Game extends Component {
       '1,1,1',
       '2,2,2',
       '2,1,0'
-    ]
+    ],
+
+    gameStatus: ""
+
   };
 
 
@@ -77,7 +80,12 @@ class Game extends Component {
 
   //New game handler
   newGameHandle = () => {
-    console.log("Hi from newGameHandle");
+
+    //Change status game to start
+    this.setState(prevState => {
+      prevState.gameStatus = "start";
+    });
+
     //Reset names of player1
     this.setState(prevState => {
       prevState.player1.name = "";
@@ -91,6 +99,22 @@ class Game extends Component {
 
     this.resetGameHandle();
   }
+
+  //Add Names of players
+  addNamesOfPlayers = (players) => {
+    console.log("Hi from Start game");
+
+    this.setState(prevState => { prevState.player1.name = players.player1 });
+    this.setState(prevState => { prevState.player2.name = players.player2 });
+
+    this.setState(prevState => {
+      prevState.gameStatus = "Game have started"
+      return prevState;
+    });
+
+  }
+
+
 
   //Change a player turn
   changeCurrentPlayer = () => {
@@ -119,20 +143,6 @@ class Game extends Component {
       this.state.isWin = player.name; //Put name of winer in the state
       alert(`Congratulation you ${this.state.isWin}! You Won!!!`);
     }
-
-
-    // Here i try to compare two arrays
-    // let winCombination = [0, 0, 0];
-
-    // // If I have all three the same numbers it is means that our arrays are the same
-    // for (var i = 0; i < winCombination.length; i++) {
-    //   if (playerArray.indexOf(winCombination[i]) === -1) {
-    //     console.log("It is not the same: ", winCombination[i], playerArray); //Do this if not the same
-    //     return console.log('Game over');
-    //   } else {
-    //     console.log("Win combination is: ", winCombination, playerArray); //Do this if index the same
-    //   };
-    // };
   }
 
 
@@ -166,28 +176,30 @@ class Game extends Component {
     }
 
     this.changeCurrentPlayer(); //Change player each next turn
-    console.log("I work first");
   }
 
-
-
-
   render() {
-
-    // this.assignPlayerToCell(3); // Test my method onClick to Cell
-
-
     return (
       <div>
-
-        {/* <Header /> */}
-        {/* <Info /> */}
-        <Board
-          state={this.state}
-          assignPlayerToCell={this.assignPlayerToCell}
-          resetGame={this.resetGameHandle}
-          newGame={this.newGameHandle}
-        />
+        {
+          (this.state.gameStatus === "" ?
+            <Header
+              newGame={this.newGameHandle}
+            /> :
+            this.state.gameStatus === "start" ?
+            <Info
+              addNamesOfPlayers={this.addNamesOfPlayers}
+              player1={this.state.player1}
+              player2={this.state.player2}
+            />:
+            <Board
+              state={this.state}
+              assignPlayerToCell={this.assignPlayerToCell}
+              resetGame={this.resetGameHandle}
+              newGame={this.newGameHandle}
+              />
+          )
+        }
       </div>
     );
   }

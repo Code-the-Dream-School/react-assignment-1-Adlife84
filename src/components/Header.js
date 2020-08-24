@@ -8,7 +8,8 @@ const Header = (props) => {
         <div className="center">
           <img className="logo" src={Logo} alt="Logo" />
           <h1 className="niceFont text-uppercase">tic tac toe</h1>
-          <button className="btn btn-dark niceFont"> Start </button>
+          <button className="btn btn-dark niceFont" onClick={() => 
+        props.newGame()}> Start </button>
         </div>
     </div>
   );
