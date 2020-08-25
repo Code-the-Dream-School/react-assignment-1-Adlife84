@@ -125,7 +125,6 @@ class Game extends Component {
     this.state.currentPlayer === 'player1' ?
       this.setState(prevState => { prevState.currentPlayer = 'player2' }) :
       this.setState(prevState => { prevState.currentPlayer = 'player1' });
-    console.log("I have change players", this.state.currentPlayer);  //Test that state changed
   }
 
   //Check is it WIN (compare two arrays beatwean each other if it's the same you win)
@@ -196,14 +195,12 @@ class Game extends Component {
         this.setState(prevState => {
           prevState.board[id[0]][id[1]].player = O;
           prevState.player1.steps.push(id[1]);
-          console.log('Player 1', this.state.player1.steps);
           return prevState;
         });
       } else {
         this.setState(prevState => {
           prevState.board[id[0]][id[1]].player = X;
           prevState.player2.steps.push(id[1]);
-          console.log('Player 2', this.state.player2.steps);
           return prevState;
         });
       }
