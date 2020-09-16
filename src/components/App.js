@@ -206,11 +206,12 @@ class Game extends Component {
       alert("Cell is not free, click on other cell");
       return
     }
+    
     this.changeCurrentPlayer(); //Change player each next turn
   }
 
   render() {
-
+    this.isWin(); //Check for win
     return (
       <div>
         {
