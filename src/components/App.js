@@ -110,7 +110,7 @@ class Game extends Component {
       this.setState(prevState => { prevState.player1.name = players.player1 });
       this.setState(prevState => { prevState.player2.name = players.player2 });
 
-      //Change staus game
+      //Change status game
       this.setState(prevState => {
         prevState.gameStatus = "Game have started"
         return prevState;
@@ -175,21 +175,19 @@ class Game extends Component {
     }
   }
 
-  //Sound effect onClick doesn't work yet
-  makeSound = () => {
-    console.log("Try tp play sound");
-    let audioUrl = 'police.mp3';
+  // //Sound effect onClick doesn't work yet
+  // makeSound = () => {
+  //   console.log("Try tp play sound");
+  //   let audioUrl = 'police.mp3';
 
-    // SIMPLE EXEMPLE
-    new Audio(audioUrl).play(); // that will do the trick !!
-  }
+  //   // SIMPLE EXEMPLE
+  //   new Audio(audioUrl).play(); // that will do the trick !!
+  //   this.makeSound();
+  // }
 
 
   //Assign image Player to cell
   assignPlayerToCell = (id) => {
-
-    this.makeSound();
-
     if (this.state.board[id[0]][id[1]].player === N) {
       if (this.state.currentPlayer === "player1") {
         this.setState(prevState => {
@@ -206,16 +204,12 @@ class Game extends Component {
       }
     } else {
       alert("Cell is not free, click on other cell");
+      return
     }
-
     this.changeCurrentPlayer(); //Change player each next turn
-
   }
 
   render() {
-
-    this.isWin(this.state.currentPlayer); //test isWin logic until start game remove it after 
-
 
     return (
       <div>
